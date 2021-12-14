@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+
+{% block rel %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+    <body>
+        <header>
+            <div class="heading">
+                <h1>Welcome to the Waste Hunter</h1>
+            </div>
+        </header>
+        <ul>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('signup') }}">SignUp</a></li>
+        </ul>
+    </body>
+{% endblock %}
