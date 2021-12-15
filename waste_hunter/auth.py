@@ -12,7 +12,6 @@ def signup():
         email = request.form['email']
         username = request.form['username']
         password = request.form['password']
-        confirm_password = request.form['confirm_password']
 
         error = None
         if not username:
@@ -25,8 +24,6 @@ def signup():
             error = 'Email {} is already registered'.format(email)
         elif User.query.filter_by(username=username).first():
             error = "User {} is already registered".format(username)
-        elif password != confirm_password:
-            error = 'Incorrect password'
 
         if error is None:
             user = User(username=username, password=generate_password_hash(password), email=email)
@@ -44,5 +41,9 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        confirm_password = request.form['password']
+
+        if password != confirm_password:
+            error = 'Incorrect password'
 
     return render_template("waste_hunter/WasteHunterLogin.html")
