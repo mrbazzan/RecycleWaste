@@ -16,15 +16,22 @@
         <div class="container">
             <a class="navbar-brand h1" href="#">Waste Hunter</a>
             <ul class="nav nav-pills ">
+                {% if g.user %}
                 <li class="nav-item ">
-                    <!-- link this to the Login page  -->
+                    <a href="{{ url_for('auth.logout') }}" class="nav-link active bg-success">Logout</a>
+                </li>
+                <div></div>
+                {% else %}
+                <li class="nav-item ">
                     <a href="{{ url_for('auth.login') }}" class="nav-link active bg-success">Login</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
         
       </nav>
     <div class="container">
+        USER: {{ g.user }}
         <section class="get-started">
             <h1 class="h1"> Theres a better way to <br/> keep our community clean</h1>
 
@@ -51,9 +58,6 @@
             </div>
 
         </footer>
-
-        
-
     </div>
 
     <!-- Bootstrap JsDeliver CDN -->

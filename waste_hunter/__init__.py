@@ -32,4 +32,8 @@ def create_app(test_config=None):
     def index():
         return render_template("user_profile/index.html")
 
+    @app.route("/hello")
+    def hello():
+        return "hello, world"
+
     return app

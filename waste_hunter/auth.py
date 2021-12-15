@@ -2,11 +2,13 @@
 from flask import Blueprint, url_for, session, g, render_template, request, flash, redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 from waste_hunter.db import User, db
+from waste_hunter.utils import dont_allow_access_to_login_and_signup
 
 bp = Blueprint('auth', __name__, url_prefix='')
 
 
 @bp.route("/signup", methods=('GET', 'POST'))
+@dont_allow_access_to_login_and_signup
 def signup():
     if request.method == 'POST':
         first_name = request.form['first_name']
@@ -43,6 +45,7 @@ def signup():
 
 
 @bp.route("/login", methods=('GET', 'POST'))
+@dont_allow_access_to_login_and_signup
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -67,8 +70,23 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user.id
-            return redirect(url_for('index'))
+            return redirect(url_for('hello'))
 
         flash(error)
 
     return render_template("waste_hunter/WasteHunterLogin.html")
+
+
+@bp.route('logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = User.query.filter_by(id=user_id).first()
