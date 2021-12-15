@@ -6,15 +6,21 @@
     <!-- bootstrap CDN link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;600;700&display=swap" rel="stylesheet">
+
     <title>Home</title>
 {% endblock %}
 
 
 {% block body %}
 <body>
+    <!-- the nav is built using bootstrap navbar classes  -->
     <nav class="navbar navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand h1" href="#">Waste Hunter</a>
+            <a class="navbar-brand h1 text-success fw-bold"href="#">WasteHunter</a>
             <ul class="nav nav-pills ">
                 {% if g.user %}
                 <li class="nav-item ">
@@ -30,28 +36,41 @@
         </div>
         
       </nav>
-    <div class="container">
+    <div>
         USER: {{ g.user }}
-        <section class="get-started">
-            <h1 class="h1"> Theres a better way to <br/> keep our community clean</h1>
+        <section class="get-started mb-5 container">
+            <div>
+                <h1 class="h1 mb-4 fw-bold"> Theres a better way to keep our community clean</h1>
 
-            <!-- link this button to the Login/Signup page  -->
-            <a href="{{ url_for('auth.login') }}"><button type="button" class="btn btn-success">Login</button></a>
+                <!-- link this button to the Login/Signup page  -->
+                <a href="{{ url_for('auth.signup') }}"><button type="button" class="btn btn-success">Get Started</button></a>
+            </div>
+            <img src="{{ url_for('static', filename='10181.jpg') }}" alt="waste vector">
+            
         </section>
 
         <!-- second section of landing page  -->
-        <section class="description-wrapper bg-white">
-            <ul class="description">
-                <li class="h6">Plastic Waste Collection</li>
-                <li class="h6">Request to Pickup</li>
-                <li class="h6">Report illegal refuse dumps</li>
+        <section class="description-wrapper mb-5 bg-success">
+            <ul class="description container text-white">
+                <li>
+                    <h5 class="fw-bolder">Plastic Waste Collection</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum soluta cum dolorum cumque laborum nim nesciunt facilis</p>
+                </li>
+                <li>
+                    <h5 class="fw-bolder">Request to Pickup</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum soluta cum dolorum cumque laborum nim nesciunt facilis</p>
+                </li>
+                <li>
+                    <h5 class="fw-bolder">Report illegal refuse dumps</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum soluta cum dolorum cumque laborum nim nesciunt facilis</p>
+                </li>
             </ul>     
         </section>
 
         <!-- the footer section  -->
-        <footer class="footer">
+        <footer class="footer mt-5 mb-5 container">
             <div>
-                <p class="h3">We can all work together to eradicate <br/> waste littering</p>
+                <p class="h3 mb-4 fw-bolder">We can all work together to eradicate waste littering</p>
             </div>
             <div>
                 <a href="{{ url_for('auth.signup') }}"><button type="button" class="btn btn-success .nav-fill">Create Account</button></a>
