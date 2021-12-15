@@ -2,10 +2,14 @@
 
 /* Get rid of all default margins/paddings. Set typeface */
 body {
-  background-color: black;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: whitesmoke;
+  font-family: "lato", sans-serif;
 }
 
-div.heading {
+.heading {
   width: 50%;
   height: 50%;
   background-color: lawngreen;
