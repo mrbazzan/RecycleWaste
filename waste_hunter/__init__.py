@@ -23,7 +23,8 @@ def create_app(test_config=None):
     from . import db, auth
 
     db.db.init_app(app)
-    db.initialize_app(app)
+    db.migrate.init_app(app, db.db)
+    # db.initialize_app(app)
     app.register_blueprint(auth.bp)
 
     app.add_url_rule('/', endpoint='index')

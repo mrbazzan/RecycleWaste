@@ -3,10 +3,12 @@ import click
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_migrate import Migrate
 from flask.cli import with_appcontext
 
 
 db = SQLAlchemy()
+migrate = Migrate()
 
 
 @click.command('init-db')
