@@ -27,7 +27,7 @@ body {
   height: 100vh;
 }
 
-.loginFrm {
+.loginFrm, .requestFrm, .reportFrm {
   display: flex;
   justify-content: center;
   align-items: center;

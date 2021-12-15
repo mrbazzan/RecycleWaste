@@ -1,6 +1,6 @@
 
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, g
 
 
 def create_app(test_config=None):
@@ -34,6 +34,11 @@ def create_app(test_config=None):
 
     @app.route("/hello")
     def hello():
-        return "hello, world"
+        # print(g.user.first_name + " " + g.user.last_name)
+        return render_template("waste_hunter/WasteHunterRequestPickUp.html")
+
+    @app.route('/report')
+    def report():
+        return render_template("waste_hunter/WasteHunterReport.html")
 
     return app

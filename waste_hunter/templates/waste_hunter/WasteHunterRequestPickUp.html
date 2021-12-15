@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+
+
+{% block rel %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Request Pick-up</title>
+{% endblock %}
+
+
+{% block body %}
+    <body>
+        <div class="requestFrm">
+        <form method="post" class="form">
+          <h1 class="title">Request Pick-up</h1>
+
+          <div class="inputContainer">
+            <label for="name" class="label">Name</label>
+            <input type="text" class="input" name="name" required>
+          </div>
+
+          <div class="inputContainer">
+            <label for="pickup_location" class="label">Pick-up Location</label>
+            <input type="text" class="input" name="pickup_location" required>
+          </div>
+
+          <div class="inputContainer">
+            <label for="waste_description" class="label">Waste Description</label>
+            <input type="text" class="input" name="waste_description" required>
+          </div>
+
+          <input type="submit" class="submitBtn" value="Request Pick-up">
+        </form>
+      </div>
+    </body>
+{% endblock %}
