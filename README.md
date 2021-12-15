@@ -16,6 +16,7 @@ export FLASK_APP=waste_hunter
 export FLASK_ENV=development
 flask db init
 flask db migrate
+flask db upgrade
 
 ```
 
@@ -25,7 +26,7 @@ set FLASK_ENV=waste_hunter
 set FLASK_ENV=development
 flask db init
 flask db migrate
-flask run
+flask db upgrade
 ```
 
 - To run the app

@@ -1,5 +1,5 @@
 
-from flask import Blueprint, url_for, render_template, request, flash, redirect
+from flask import Blueprint, url_for, session, g, render_template, request, flash, redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 from waste_hunter.db import User, db
 
@@ -31,11 +31,11 @@ def signup():
                 phone_number=phone_number,
                 address=address,
                 password=generate_password_hash(password),
-                email=email
+                email=email.strip()
             )
             db.session.add(user)
             db.session.commit()
-            return redirect(url_for('index'))
+            return redirect(url_for('auth.login'))
 
         flash(error)
 
@@ -48,8 +48,27 @@ def login():
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['password']
+        error = None
 
-        if password != confirm_password:
-            error = 'Incorrect password'
+        user = User.query.filter_by(email=email.strip()).first()
+
+        if not email:
+            error = "Email is required."
+        elif not password:
+            error = "Password is required"
+        elif not confirm_password:
+            error = "Confirm Password is required"
+
+        if user is None:
+            error = "Enter a valid user detail"
+        elif not check_password_hash(user.password, password):
+            error = "Incorrect password"
+
+        if error is None:
+            session.clear()
+            session['user_id'] = user.id
+            return redirect(url_for('index'))
+
+        flash(error)
 
     return render_template("waste_hunter/WasteHunterLogin.html")
