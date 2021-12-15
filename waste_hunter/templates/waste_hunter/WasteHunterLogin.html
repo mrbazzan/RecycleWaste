@@ -1,4 +1,6 @@
 
+{% extends 'base.html' %}
+
 {% block rel %}
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Login</title>
@@ -8,13 +10,13 @@
 
 {% block body %}
     <body>
-      <div class="loginFrm">
+      <div class="signupFrm">
         <form method="post" class="form">
           <h1 class="title">Log in</h1>
 
           <div class="inputContainer">
-              <label for="username" class="label">Username</label>
-              <input type="text" class="input" name="username" required>
+              <label for="email" class="label">Email</label>
+              <input type="text" class="input" name="email" required>
           </div>
 
           <div class="inputContainer">

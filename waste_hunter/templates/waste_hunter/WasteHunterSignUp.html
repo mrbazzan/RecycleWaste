@@ -1,37 +1,58 @@
+
+{% extends 'base.html' %}
+
 {% block rel %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>SignUp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"><title>SignUp</title>
 {% endblock %}
 
 
 {% block body %}
     <body>
-        <div class="signupFrm">
-        <form method="post" class="form">
-          <h1 class="title">Sign Up</h1>
+      <div class="loginFrm">
+          <form method="post" class="form">
 
-          <div class="inputContainer">
-            <label for="email" class="label">Email</label>
-            <input type="text" class="input" name="email" required>
-          </div>
+              <h1 class="title">Sign Up</h1>
 
-          <div class="inputContainer">
-            <label for="username" class="label">Username</label>
-            <input type="text" class="input" name="username" required>
-          </div>
+              {% for message in get_flashed_messages() %}
+                {{ message }}
+              {% endfor %}
 
-          <div class="inputContainer">
-            <label for="password" class="label">Password</label>
-            <input type="password" class="input" name="password" required>
+              <div class="inputContainer">
+                <label for="first_name" class="label">First Name</label>
+                <input type="text" class="input" name="first_name" required>
+              </div>
 
-          </div>
+              <div class="inputContainer">
+                <label for="last_name" class="label">Last Name</label>
+                <input type="text" class="input" name="last_name" required>
+              </div>
 
-          <div class="inputContainer">
-            <label for="confirm_password" class="label">Confirm Password</label>
-            <input type="password" class="input" name="confirm_password" required>
-          </div>
+              <div class="inputContainer">
+                <label for="email" class="label">Email</label>
+                <input type="text" class="input" name="email" required>
+              </div>
 
-          <input type="submit" class="submitBtn" value="Sign Up">
+              <div class="inputContainer">
+                <label for="phone_number" class="label">Phone Number</label>
+                <input type="text" class="input" name="phone_number" required>
+              </div>
+
+              <div class="inputContainer">
+                <label for="address" class="label">Address</label>
+                <input type="text" class="input" name="address" required>
+              </div>
+
+              <div class="inputContainer">
+                <label for="password" class="label">Password</label>
+                <input type="password" class="input" name="password" required>
+              </div>
+
+              <div class="inputContainer">
+                <label for="confirm_password" class="label">Confirm Password</label>
+                <input type="password" class="input" name="confirm_password" required>
+              </div>
+
+              <input type="submit" class="submitBtn" value="Sign Up">
         </form>
       </div>
     </body>

@@ -20,6 +20,7 @@ chmod +x script.sh
 ```shell
 set FLASK_ENV=waste_hunter
 set FLASK_ENV=development
+flask init-db
 flask run
 ```
 
