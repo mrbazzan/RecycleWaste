@@ -8,21 +8,29 @@ python -m venv venv/
 pip install -r requirements.txt
 
 ```
-- Then enable permission for the script and run
+- Then set up environmental variable and required migrations
 
 `For Linux Users`
 ```shell
-chmod +x script.sh
-./script.sh
+export FLASK_APP=waste_hunter
+export FLASK_ENV=development
+flask db init
+flask db migrate
+
 ```
 
 `For Windows Users`
 ```shell
 set FLASK_ENV=waste_hunter
 set FLASK_ENV=development
-flask init-db
+flask db init
+flask db migrate
 flask run
 ```
 
+- To run the app
+```shell
+flask run
+```
 NB:
 For contributors to the `HTML,CSS,JS`, only access the `templates` and `static` folders
