@@ -20,12 +20,12 @@
     <!-- the nav is built using bootstrap navbar classes  -->
     <nav class="navbar navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand h1 text-success fw-bold"href="#">WasteHunter</a>
+            <a class="navbar-brand h1 text-success fw-bold" href="{{ url_for('index') }}">WasteHunter</a>
             <ul class="nav nav-pills ">
                 {% if g.user %}
-                <li class="nav-item ">
-                    <a href="{{ url_for('auth.logout') }}" class="nav-link active bg-success">Logout</a>
-                </li>
+<!--                <li class="nav-item ">-->
+<!--                    <a href="{{ url_for('auth.logout') }}" class="nav-link active bg-success">Logout</a>-->
+<!--                </li>-->
                 <div></div>
                 {% else %}
                 <li class="nav-item ">
@@ -34,18 +34,18 @@
                 {% endif %}
             </ul>
         </div>
-        
+
       </nav>
     <div>
         <section class="get-started mb-5 container">
             <div>
-                <h1 class="h1 mb-4 fw-bold"> Theres a better way to keep our community clean</h1>
+                <h1 class="h1 mb-4 fw-bold"> There's a better way to keep our community clean</h1>
                 {% if not g.user %}
                 <a href="{{ url_for('auth.signup') }}"><button type="button" class="btn btn-success">Get Started</button></a>
                 {% endif %}
             </div>
             <img src="{{ url_for('static', filename='10181.jpg') }}" alt="waste vector">
-            
+
         </section>
 
         <!-- second section of landing page  -->
@@ -53,23 +53,23 @@
             <ul class="description container text-white">
                 <li>
                     <h5 class="fw-bolder">Plastic Waste Collection</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum soluta cum dolorum cumque laborum nim nesciunt facilis</p>
+                    <p>We collect all forms of plastic wastes and individuals are issued points based on the quantity of waste presented. Accumulated points can be used to receive cash and other benefits</p>
                 </li>
                 <li>
                     <h5 class="fw-bolder">Request to Pickup</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum soluta cum dolorum cumque laborum nim nesciunt facilis</p>
+                    <p>Sort your waste, request for pickup, and a waste hunter agent will come receive the plastic wastes and allot points to you based on the quantity</p>
                 </li>
                 <li>
-                    <h5 class="fw-bolder">Report illegal refuse dumps</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum soluta cum dolorum cumque laborum nim nesciunt facilis</p>
+                    <h5 class="fw-bolder">Report illegal dump sites</h5>
+                    <p>Help us keep your environment safe by reporting illegal waste dumps around you and get rewarded</p>
                 </li>
-            </ul>     
+            </ul>
         </section>
 
         <!-- the footer section  -->
         <footer class="footer mt-5 mb-5 container">
             <div>
-                <p class="h3 mb-4 fw-bolder">We can all work together to eradicate waste littering</p>
+                <p class="h3 mb-4 fw-bolder">We can all work together to achieve environmental sustainability</p>
             </div>
         </footer>
     </div>

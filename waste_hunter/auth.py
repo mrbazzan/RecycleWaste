@@ -17,9 +17,12 @@ def signup():
         phone_number = request.form['phone_number']
         address = request.form['address']
         password = request.form['password']
-        confirm_password = request.form['password']
+        confirm_password = request.form['confirm_password']
 
         validated_email = email_validator(email)
+
+        print(password)
+        print(confirm_password)
 
         error = None
         if not email:
@@ -28,11 +31,15 @@ def signup():
             error = 'Password is required'
         elif not confirm_password:
             error = "Confirm Password is required"
+        elif password != confirm_password:
+            error = "Make sure your password is valid"
         elif User.query.filter_by(email=email).first():
             error = 'Email {} is already registered'.format(email)
 
-        if validated_email != email:
-            error = validated_email
+        # print(error)
+
+        # if validated_email != email:
+        #     error = validated_email
 
         if error is None:
             user = User(
@@ -67,10 +74,10 @@ def login():
         elif not password:
             error = "Password is required"
 
-        if user is None:
-            error = "Enter a valid user detail"
-        elif not check_password_hash(user.password, password):
-            error = "Incorrect password"
+        # if user is None:
+        #     error = "Enter a valid user detail"
+        # elif not check_password_hash(user.password, password):
+        #     error = "Incorrect password"
 
         if error is None:
             session.clear()

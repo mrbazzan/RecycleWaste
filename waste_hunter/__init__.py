@@ -1,6 +1,6 @@
 
 import os
-from flask import Flask, render_template, g
+from flask import Flask, render_template, request, g
 
 
 def create_app(test_config=None):
@@ -21,6 +21,7 @@ def create_app(test_config=None):
         pass
 
     from . import db, auth
+    from .utils import authenticated_access, send_email
 
     db.db.init_app(app)
     db.migrate.init_app(app, db.db)
@@ -28,16 +29,33 @@ def create_app(test_config=None):
 
     app.add_url_rule('/', endpoint='index')
 
+    #TODO; Redo index page, send using email, deploy to heroku
+
     @app.route("/")
     def index():
         return render_template("user_profile/index.html")
 
-    @app.route("/request")
+    @app.route("/request", methods=('GET', 'POST'))
+    @authenticated_access
     def hello():
+        if request.method == 'POST':
+            location = request.form['pickup_location']
+            description = request.form['waste_description']
+
+            if send_email('abdulwasiuapalowo@gmail.com', location + '\n' + description):
+                return "Success"
+
         return render_template("waste_hunter/WasteHunterRequestPickUp.html")
 
-    @app.route('/report')
+    @app.route('/report', methods=('GET', 'POST'))
+    @authenticated_access
     def report():
+        if request.method == 'POST':
+            location = request.form['dump_location']
+            description = request.form['waste_description']
+
+            if send_email('abdulwasiuapalowo@gmail.com', location + '\n' + description):
+                return "Success"
         return render_template("waste_hunter/WasteHunterReport.html")
 
     return app
