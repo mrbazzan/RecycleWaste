@@ -40,9 +40,9 @@
         <section class="get-started mb-5 container">
             <div>
                 <h1 class="h1 mb-4 fw-bold"> Theres a better way to keep our community clean</h1>
-
-                <!-- link this button to the Login/Signup page  -->
+                {% if not g.user %}
                 <a href="{{ url_for('auth.signup') }}"><button type="button" class="btn btn-success">Get Started</button></a>
+                {% endif %}
             </div>
             <img src="{{ url_for('static', filename='10181.jpg') }}" alt="waste vector">
             
@@ -71,10 +71,6 @@
             <div>
                 <p class="h3 mb-4 fw-bolder">We can all work together to eradicate waste littering</p>
             </div>
-            <div>
-                <a href="{{ url_for('auth.signup') }}"><button type="button" class="btn btn-success .nav-fill">Create Account</button></a>
-            </div>
-
         </footer>
     </div>
 

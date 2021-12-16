@@ -32,9 +32,8 @@ def create_app(test_config=None):
     def index():
         return render_template("user_profile/index.html")
 
-    @app.route("/hello")
+    @app.route("/request")
     def hello():
-        # print(g.user.first_name + " " + g.user.last_name)
         return render_template("waste_hunter/WasteHunterRequestPickUp.html")
 
     @app.route('/report')

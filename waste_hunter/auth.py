@@ -2,7 +2,7 @@
 from flask import Blueprint, url_for, session, g, render_template, request, flash, redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 from waste_hunter.db import User, db
-from waste_hunter.utils import dont_allow_access_to_login_and_signup
+from waste_hunter.utils import email_validator, dont_allow_access_to_login_and_signup
 
 bp = Blueprint('auth', __name__, url_prefix='')
 
@@ -17,14 +17,22 @@ def signup():
         phone_number = request.form['phone_number']
         address = request.form['address']
         password = request.form['password']
+        confirm_password = request.form['password']
+
+        validated_email = email_validator(email)
 
         error = None
         if not email:
             error = 'Email is required'
         elif not password:
             error = 'Password is required'
+        elif not confirm_password:
+            error = "Confirm Password is required"
         elif User.query.filter_by(email=email).first():
             error = 'Email {} is already registered'.format(email)
+
+        if validated_email != email:
+            error = validated_email
 
         if error is None:
             user = User(
@@ -50,7 +58,6 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        confirm_password = request.form['password']
         error = None
 
         user = User.query.filter_by(email=email.strip()).first()
@@ -59,8 +66,6 @@ def login():
             error = "Email is required."
         elif not password:
             error = "Password is required"
-        elif not confirm_password:
-            error = "Confirm Password is required"
 
         if user is None:
             error = "Enter a valid user detail"
